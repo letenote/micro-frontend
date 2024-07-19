@@ -13,12 +13,12 @@
     </div>
   </div>
   <div class="slider-content margin-bottom-20">
-    <img
-      src="./assets/img/landing-slide.png"
+    <!-- <img
+      src="{{env.host}}/assets/img/landing-slide.png"
       alt="thumb-slider"
       loading="lazy"
-    />
-    <!-- <swiper-container
+    /> -->
+    <swiper-container
       [modules]="swiperModules"
       [pagination]="true"
       [autoplay]="4000"
@@ -26,7 +26,7 @@
     >
       <swiper-slide>
         <img
-          src="./assets/img/landing-slide.png"
+          src="{{env.host}}/assets/img/landing-slide.png"
           alt="thumb-slider"
           loading="lazy"
         />
@@ -34,7 +34,7 @@
       </swiper-slide>
       <swiper-slide>
         <img
-          src="./assets/img/landing-slide.png"
+          src="{{env.host}}/assets/img/landing-slide.png"
           alt="thumb-slider"
           loading="lazy"
         />
@@ -42,13 +42,13 @@
       </swiper-slide>
       <swiper-slide>
         <img
-          src="./assets/img/landing-slide.png"
+          src="{{env.host}}/assets/img/landing-slide.png"
           alt="thumb-slider"
           loading="lazy"
         />
         <div class="swiper-lazy-preloader"></div>
       </swiper-slide>
-    </swiper-container> -->
+    </swiper-container>
   </div>
   <ion-grid [ngStyle]="{'padding': '25px'}">
     <ion-row class="home-wrap-content">
@@ -156,9 +156,10 @@
             [ngStyle]="{'margin-top': '30px', 'padding': '0px 25px'}"
           >
             <img
-              src="./assets/img/landing-slide.png"
+              src="{{env.host}}/assets/img/landing-slide.png"
               alt="thumb-img"
               loading="lazy"
+              width="100%"
             />
           </div>
           <div class="card-news-tabs" [ngStyle]="{'padding': '0px 25px'}">
@@ -223,6 +224,7 @@
                       clear
                       no-margin
                       [ngStyle]="{'color': 'red', 'background': 'transparent' }"
+                      class="button-transparent"
                     >
                       See All LEARNING SESSIONS
                     </button>
@@ -248,6 +250,7 @@
                   text-uppercase
                   color="red"
                   clear
+                  class="button-transparent"
                   [ngStyle]="{'color': 'red', 'background': 'transparent' }"
                 >
                   + ADD New Shortcut
@@ -285,9 +288,15 @@
               class="head-widget"
               [ngStyle]="{'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'background': '#ed1c2f', 'padding': '20px', 'align-items': 'center', 'border-radius': '16px'}"
             >
-              <label [ngStyle]="{'font-size': '30px'}">05</label>
-              <span [ngStyle]="{'font-size': '15px'}">OKT</span>
-              <span [ngStyle]="{'font-size': '15px'}">2018</span>
+              <label [ngStyle]="{'font-size': '30px', 'color': 'white'}"
+                >05</label
+              >
+              <span [ngStyle]="{'font-size': '15px', 'color': 'white'}"
+                >OKT</span
+              >
+              <span [ngStyle]="{'font-size': '15px', 'color': 'white'}"
+                >2018</span
+              >
             </div>
             <div class="body-widget" [ngStyle]="{'padding': '10px 10px'}">
               <h5 text-uppercase>WHAT IS PRUHUB</h5>

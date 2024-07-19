@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { IonicSlides } from "@ionic/angular";
+import { environment } from "src/environments/environment";
 import { register } from "swiper/element/bundle";
 
 register();
@@ -10,5 +11,8 @@ register();
 })
 export class HomePage {
   swiperModules = [IonicSlides];
-  ngOnInit() {}
+  protected env = environment;
+  ngOnInit() {
+    console.log("XXX", environment.host);
+  }
 }

@@ -117,3 +117,10 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+@font-face {
+  font-family: "custom-font";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/VinaSans-Regular.ttf");
+}

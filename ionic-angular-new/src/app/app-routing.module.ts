@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "folder/Inbox",
+    redirectTo: "",
     pathMatch: "full",
   },
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
       import("./folder/folder.module").then((m) => m.FolderPageModule),
   },
   {
-    path: "nbmr/home",
+    path: "",
     loadChildren: () =>
       import("./home/home.module").then((m) => m.HomePageModule),
   },

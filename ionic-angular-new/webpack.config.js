@@ -1,5 +1,6 @@
 // ::OPTION-1
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+// const DefinePlugin = require("webpack/lib/DefinePlugin");
 const mf = require("@angular-architects/module-federation/webpack");
 const path = require("path");
 const share = mf.share;
@@ -14,6 +15,13 @@ module.exports = {
     uniqueName: "ionicAngularApp",
     publicPath: "auto",
     scriptType: "text/javascript",
+    // path: path.resolve(__dirname, "./www"),
+    // filename: (pathData) => {
+    //   console.log("DEBBUG:BUILD", pathData);
+    //   return pathData.chunk.name === "styles"
+    //     ? "http://localhost:4200/[name].js"
+    //     : "[name].js";
+    // },
   },
   optimization: {
     runtimeChunk: false,
