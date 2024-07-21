@@ -1,14 +1,14 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>{{ folder }}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
@@ -25,19 +25,6 @@
         >UI Components</a
       >
     </p>
-    <button-ng></button-ng>
-    <app-button-wrapper></app-button-wrapper>
-  </div>
-
-  <div class="app">
-    <a
-      [ngStyle]="{'margin-right': '20px'}"
-      [routerLink]="['/notes']"
-      [routerLinkActive]="['active']"
-      >Notes</a
-    >
-    <a [routerLink]="['/customer']" [routerLinkActive]="['active']">Customer</a>
-    <hr />
-    <router-outlet></router-outlet>
-  </div>
+  </div> -->
+  <app-customer></app-customer>
 </ion-content>

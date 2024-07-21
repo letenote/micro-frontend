@@ -4,28 +4,13 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "",
+    redirectTo: "folder/inbox",
     pathMatch: "full",
   },
   {
     path: "folder/:id",
     loadChildren: () =>
       import("./folder/folder.module").then((m) => m.FolderPageModule),
-  },
-  {
-    path: "",
-    loadChildren: () =>
-      import("./home/home.module").then((m) => m.HomePageModule),
-  },
-  {
-    path: "customer",
-    loadComponent: () =>
-      import("ionicAngularRemote/Customer").then((m) => m.CustomerComponent),
-  },
-  {
-    path: "notes",
-    loadComponent: () =>
-      import("./notes/notes.component").then((m) => m.NotesComponent),
   },
 ];
 

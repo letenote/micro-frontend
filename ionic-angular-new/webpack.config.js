@@ -80,6 +80,8 @@ module.exports = {
       remotes: {
         react_component: "react_component@http://localhost:3001/remoteEntry.js",
         expo_app: "expo_app@http://localhost:19006/remoteEntry.js",
+        ionicAngularRemote:
+          "ionicAngularRemote@http://localhost:4300/remoteEntry.js",
       },
 
       shared: share({
