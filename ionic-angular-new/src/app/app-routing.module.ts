@@ -1,5 +1,10 @@
 import { NgModule } from "@angular/core";
-import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import {
+  PreloadAllModules,
+  Router,
+  RouterModule,
+  Routes,
+} from "@angular/router";
 
 const routes: Routes = [
   {
@@ -35,4 +40,20 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  constructor() {
+    const x = localStorage.getItem("redirect");
+    console.log("GET:STORRAGE:APPCOMPO:1", { val: x });
+    routes[0].redirectTo = this.getPath(x);
+  }
+
+  getPath(val: string | null): string {
+    switch (val) {
+      case "/":
+      case null:
+        return "";
+      default:
+        return val;
+    }
+  }
+}

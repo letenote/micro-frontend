@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { mount } from "ionicAngularApp/loadApp";
 
-const ButtonaAngularModule = () => {
+const AppAngularModule = () => {
   const ref = useRef(null);
   useEffect(() => {
     mount();
@@ -13,4 +13,4 @@ const ButtonaAngularModule = () => {
   );
 };
 
-export default ButtonaAngularModule;
+export default AppAngularModule;

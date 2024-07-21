@@ -32,11 +32,11 @@
   <div class="app">
     <a
       [ngStyle]="{'margin-right': '20px'}"
+      routerDirection="root"
       [routerLink]="['/notes']"
-      [routerLinkActive]="['active']"
       >Notes</a
     >
-    <a [routerLink]="['/customer']" [routerLinkActive]="['active']">Customer</a>
+    <a routerDirection="root" [routerLink]="['/customer']">Customer</a>
     <hr />
     <router-outlet></router-outlet>
   </div>

@@ -22,8 +22,8 @@ export class NotesComponent {
   @ViewChild("customerComponent", { read: ViewContainerRef })
   customerComponent!: ViewContainerRef;
 
-  ngOnInit() {
-    this.loadRemote();
+  async ngOnInit() {
+    await this.loadRemote();
   }
 
   async loadRemote(): Promise<void> {
