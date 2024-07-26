@@ -1,18 +1,41 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { RoutesProvider } from "./provider/RoutesProvider";
+import MenuSidebarInterface from "./sidebar/sidebar.interrface";
+import DummySidebarMenu from "./sidebar/sidebar.dummy";
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
-  public appPages = [
-    { title: 'Inbox', url: '/folder/inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/spam', icon: 'warning' },
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  sidebarMenu: Array<MenuSidebarInterface> = DummySidebarMenu;
+  constructor(private routesProvider: RoutesProvider) {}
+
+  async ngOnInit() {
+    console.log("DEBUG:ROUTES:BEFORE", this.routesProvider.getRoutes());
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await this.routesProvider.setRoutes({
+      data: [
+        {
+          path: "home",
+          loadChildren: () =>
+            import("./home/home.module").then((m) => m["HomePageModule"]),
+        },
+      ],
+    });
+
+    await this.updateSidebar({
+      data: { title: "Home", url: "/home", icon: "warning", child: [] },
+    });
+    console.log("DEBUG:ROUTES:AFTER", this.routesProvider.getRoutes());
+  }
+
+  async updateSidebar({
+    data,
+  }: {
+    data: MenuSidebarInterface;
+  }): Promise<{ message: string }> {
+    this.sidebarMenu.push(data);
+    return Promise.resolve({ message: "_SUCCESS" });
+  }
 }
