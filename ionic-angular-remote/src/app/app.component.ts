@@ -8,7 +8,8 @@ import DummySidebarMenu from "./sidebar/sidebar.dummy";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
-  sidebarMenu: Array<MenuSidebarInterface> = DummySidebarMenu;
+  protected sidebarMenu: Array<MenuSidebarInterface> = DummySidebarMenu;
+  protected openSidebarMenu: Array<string> = [];
   constructor(private routesProvider: RoutesProvider) {}
 
   async ngOnInit() {
@@ -30,12 +31,24 @@ export class AppComponent {
     console.log("DEBUG:ROUTES:AFTER", this.routesProvider.getRoutes());
   }
 
-  async updateSidebar({
+  private async updateSidebar({
     data,
   }: {
     data: MenuSidebarInterface;
   }): Promise<{ message: string }> {
     this.sidebarMenu.push(data);
     return Promise.resolve({ message: "_SUCCESS" });
+  }
+
+  protected collapseSidebarMenuHandler(sidebarMenuTitle: string): void {
+    !this.isOpenSidebarMenu(sidebarMenuTitle)
+      ? this.openSidebarMenu.push(sidebarMenuTitle)
+      : (this.openSidebarMenu = this.openSidebarMenu.filter(
+          (title) => title !== sidebarMenuTitle
+        ));
+  }
+
+  protected isOpenSidebarMenu(sidebarMenuTitle: string): boolean {
+    return this.openSidebarMenu.includes(sidebarMenuTitle);
   }
 }
