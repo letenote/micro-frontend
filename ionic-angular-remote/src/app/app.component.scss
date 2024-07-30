@@ -124,3 +124,36 @@ ion-item.selected {
 //   font-weight: normal;
 //   src: url("../assets/fonts/VinaSans-Regular.ttf");
 // }
+
+.mobile-header {
+  display: none;
+}
+
+.mobile-menu {
+  max-width: 300px;
+}
+.list-sidebar {
+  margin: 20px;
+  border: 1px solid #dedede;
+  border-radius: 10px;
+}
+.content-base {
+  margin-top: 0px;
+}
+
+@media only screen and (max-width: 990px) {
+  .mobile-header {
+    display: block;
+  }
+  .mobile-menu {
+    max-width: none;
+  }
+  .list-sidebar {
+    margin: 43px 0px 0px 0px;
+    border: 1px solid transparent;
+    border-radius: 0px;
+  }
+  .content-base {
+    margin-top: 44px;
+  }
+}

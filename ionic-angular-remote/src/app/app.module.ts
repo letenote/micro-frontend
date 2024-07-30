@@ -6,6 +6,8 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { HttpClientModule } from "@angular/common/http";
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
+import { PdfViewerModule } from "ng2-pdf-viewer";
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,8 @@ import { HttpClientModule } from "@angular/common/http";
       registrationStrategy: "registerWhenStable:30000",
     }),
     HttpClientModule,
+    CKEditorModule,
+    PdfViewerModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

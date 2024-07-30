@@ -1,17 +1,27 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu
-      contentId="main-content"
-      type="overlay"
-      [ngStyle]="{ maxWidth: '300px' }"
-    >
+  <ion-loading [isOpen]="!getAppIsReady()" message="Loading ..."></ion-loading>
+  <ion-header class="mobile-header">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon slot="icon-only" size="medium" name="notifications-outline">
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-split-pane *ngIf="getAppIsReady()" contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay" class="mobile-menu">
       <ion-content>
         <ion-list
+          class="list-sidebar"
           [ngStyle]="{
             paddingTop: '0px',
-            border: '1px solid #dedede',
-            borderRadius: '10px',
-            margin: '20px',
+
             paddingBottom: '0px'
           }"
         >
@@ -75,6 +85,9 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-router-outlet
+      id="main-content"
+      class="content-base"
+    ></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
