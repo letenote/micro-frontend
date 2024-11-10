@@ -10,6 +10,17 @@ sharedMappings.register(path.join(__dirname, "tsconfig.json"), [
   /* mapped paths to share */
 ]);
 
+const fs = require("fs");
+fs.readdir("./src/app/containers", async (err, folders) => {
+  fs.writeFile(
+    "./src/app/readFolders.ts",
+    `export default function (): Array<string> {
+      return ${JSON.stringify(folders)};
+    }`,
+    (err) => err && console.log("Fail, read all containers")
+  );
+});
+
 module.exports = {
   output: {
     uniqueName: "ionicAngularRemote",

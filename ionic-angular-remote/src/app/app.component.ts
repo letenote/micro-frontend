@@ -2,6 +2,9 @@ import { Component } from "@angular/core";
 import { RoutesProvider } from "./provider/RoutesProvider";
 import MenuSidebarInterface from "./sidebar/sidebar.interrface";
 import DummySidebarMenu from "./sidebar/sidebar.dummy";
+import allFolders from "./readFolders";
+import { WebServiceWorker } from "src/services/WebServiceWorker.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-root",
@@ -12,7 +15,15 @@ export class AppComponent {
   protected sidebarMenu: Array<MenuSidebarInterface> = DummySidebarMenu;
   protected openSidebarMenu: Array<string> = [];
   protected appIsReady: boolean = false;
-  constructor(private routesProvider: RoutesProvider) {}
+
+  // ::sw-update
+  isNewAppVersionAvailable: boolean = false;
+  newAppUpdateAvailableSubscription!: Subscription;
+
+  constructor(
+    private routesProvider: RoutesProvider,
+    private webServiceWorker: WebServiceWorker
+  ) {}
 
   async ngOnInit() {
     console.log("DEBUG:ROUTES:BEFORE", this.routesProvider.getRoutes());
@@ -33,6 +44,12 @@ export class AppComponent {
     console.log("DEBUG:ROUTES:AFTER", this.routesProvider.getRoutes());
     await new Promise((resolve) => setTimeout(resolve, 1000));
     this.setAppIsReady(true);
+
+    console.log("DEBUG:ROUTES:AFTER::REESULT", { allFolders: allFolders() });
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+
+    this.checkIfAppUpdated();
   }
 
   private async updateSidebar({
@@ -63,6 +80,29 @@ export class AppComponent {
 
   private setAppIsReady(val: boolean): void {
     this.appIsReady = val;
+  }
+
+  // ::sw-update
+  checkIfAppUpdated() {
+    this.newAppUpdateAvailableSubscription =
+      this.webServiceWorker.$isAnyNewUpdateAvailable.subscribe(
+        (versionAvailableFlag: boolean) => {
+          this.isNewAppVersionAvailable = versionAvailableFlag;
+          if (versionAvailableFlag) {
+            let text =
+              "A new version of the app is available. Please refresh your browser window or click OK button.";
+            if (confirm(text) == true) return this.refreshApp();
+          }
+        }
+      );
+  }
+
+  refreshApp() {
+    window.location.reload();
+  }
+
+  ngOnDestroy() {
+    this.newAppUpdateAvailableSubscription?.unsubscribe();
   }
 
   // changeRouteConfig() {

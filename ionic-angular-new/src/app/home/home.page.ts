@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { IonicSlides, NavController } from "@ionic/angular";
 import { environment } from "src/environments/environment";
 import { register } from "swiper/element/bundle";
+import { accessibilityOutline } from "ionicons/icons";
+import { addIcons } from "ionicons";
 
 register();
 @Component({
@@ -15,6 +17,7 @@ export class HomePage {
   protected username: string | null = "";
   constructor(private navCtrl: NavController) {
     localStorage.setItem("name", "123");
+    addIcons({ accessibilityOutline });
   }
   ngOnInit() {
     console.log("XXX", environment.host);

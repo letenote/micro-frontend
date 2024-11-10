@@ -157,3 +157,7 @@ ion-item.selected {
     margin-top: 44px;
   }
 }
+
+.no-hover {
+  --background-hover: transparent;
+}
